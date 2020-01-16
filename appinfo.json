@@ -1,0 +1,13 @@
+{
+  "appinfo": [
+    {
+      "name": "ucu-api",
+      "version": "v0.0.1",
+      "authors": [
+        "Greg Willard <gwillard4695@floridapoly.edu>", 
+        "Robery Maloy <rmaloy2612@floridapoly.edu>", 
+        "Jackson Potts <jpotts5428@floridapoly.edu>",
+        "Lee Oester <loester2687@floridapoly.edu>"]
+    }
+  ]
+}
