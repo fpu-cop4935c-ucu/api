@@ -7,7 +7,7 @@ Be sure that `python3` and `python3-pip` and any other dependencies are installe
 
 and be sure that we have the `flask` pip module installed:
 
-`pip install flask bluepy`
+`pip3 install flask bluepy digi-xbee`
 
 
 ## Starting the server
