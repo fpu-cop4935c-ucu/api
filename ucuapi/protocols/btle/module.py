@@ -2,7 +2,11 @@ from flask import Blueprint, request
 from bluepy.btle import Scanner, DefaultDelegate
 import json
 
+CONFIG_FILE = 'ucuapi/protocols/btle/config.json'
 btle = Blueprint('btle', __name__)
+
+with open(CONFIG_FILE) as json_file:
+    config = json.load(json_file)['config'][0]
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self):
@@ -18,7 +22,7 @@ devices = {}
 
 @btle.route('/scan')
 def btle_scan():
-    timeout = request.args.get('timeout', default = 5, type = int)
+    timeout = request.args.get('timeout', default = config['defaultTimeout'], type = int)
     global devices
     devices = scanner.scan(timeout, passive=True)
     return "OK"
