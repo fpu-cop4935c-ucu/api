@@ -1,0 +1,8 @@
+{
+  "config": [
+    {
+      "devicePort": "/dev/ttyUSB1",
+      "deviceBaudRate": 9600
+    }
+  ]
+}
