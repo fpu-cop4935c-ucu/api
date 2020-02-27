@@ -15,8 +15,11 @@ USERS_DB = 'ucuapi/addons/service/' + config['usersDb']
 def service_unlock():
     try:
         users = list(csv.reader(open(USERS_DB)))
-        # TODO: do this, but better
-        service_hash = users[1][2]
+        service_hash = "X"
+        for userline in users:
+            # get the hash for only the "service" user
+            if userline[1] == "service":
+                service_hash = userline[2]
         pin_attempt = request.form.get('pin_attempt')
         hash_object = hashlib.sha256(pin_attempt.encode())
         hex_dig = str(hash_object.hexdigest())
