@@ -47,3 +47,10 @@ def dummy_device(udid):
             data.append(device)
     return json.dumps(data)
 
+@dummy.route('/device/<udid>/<value>', methods = ['GET'])
+def dummy_device_value(udid, value):
+    data = []
+    for dev in devices:
+        if dev.udid == udid:
+            return str(dev.values[value])
+
