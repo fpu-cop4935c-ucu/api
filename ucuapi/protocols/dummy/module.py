@@ -56,7 +56,7 @@ def dummy_device_value(udid, value):
                 return str(dev.values[value])
         # device not found
         return "ERR", 404
-    else if request.method == 'POST':
+    elif request.method == 'POST':
         for dev in devices:
             if dev.udid == udid:
                 dev.values[value] = request.form.get('value')
