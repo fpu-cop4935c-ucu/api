@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="sliderPage" content="width=device-width, initial-scale=1">
+    <style>
+        .slideContainment {
+            width: 100%;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transistion: opacity .2s;
+        }
+        
+        .slider:hover {
+            opacity: 1;
+        }
+        
+        .slider:: -webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #4CAF50 cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+    </style>
+</head>
+
+<body style="background-color:black;">
+    <center><font color="white" size="7"> Light Slider </font>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="lightSlider">
+            <p><font color="white" size="4">Value: <span id="demo"></span></font></p>
+            <p><font color="white" size="4">Device ID: <span id="devID">{{ udid_HTML }}</span></font></p>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            var slider = document.getElementById("lightSlider");
+            var output = document.getElementById("demo");
+            var devID_URL = document.getElementById("devID").innerHTML;
+            output.innerHTML = slider.value;
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+                var json_value = this.value
+                $.ajax({
+                        url: '/dummy/device/'+devID_URL+'/lightValue',
+                        type: 'POST',
+                        data: {
+                            value: $('#lightSlider').val()
+                        },
+                    })
+                    .done(function(result) {
+                        console.log(result)
+                    })
+            }
+        </script>
+    </center>
+
+</body>
+
+</html>
