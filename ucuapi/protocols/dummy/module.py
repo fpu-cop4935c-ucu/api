@@ -39,7 +39,7 @@ def dummy_devices():
         device["devType"] = dev.devType
         device["values"] = dev.values
         data.append(device)
-    return jsonify(data)
+    return json.dumps(data)
 
 @dummy.route('/device/<udid>')
 def dummy_device(udid):
