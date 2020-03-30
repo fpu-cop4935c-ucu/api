@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request
 import json
 
 CONFIG_FILE = 'ucuapi/protocols/dummy/config.json'
@@ -25,9 +25,9 @@ def dummy_scan():
     global devices
     devices = []
     # populate the devices list with some dummy devices
-    devices.append(Device("dummy0", "generic", {}))
+    devices.append(Device("dummy0", "lock", {"isLocked": "false"}))
     devices.append(Device("dummy1", "light", {"lightValue": "50"}))
-    devices.append(Device("dummy2", "volume", {"volumeLevel": "70"}))
+    devices.append(Device("dummy2", "volume", {"volumeLevel": "50"}))
     return "OK"
 
 @dummy.route('/devices')
@@ -39,7 +39,7 @@ def dummy_devices():
         device["devType"] = dev.devType
         device["values"] = dev.values
         data.append(device)
-    return json.dumps(data)
+    return jsonify(data)
 
 @dummy.route('/device/<udid>')
 def dummy_device(udid):
@@ -51,10 +51,7 @@ def dummy_device(udid):
             device["devType"] = dev.devType
             device["values"] = dev.values
             data.append(device)
-            if dev.devType == "light":
-                return render_template('light.html', udid_HTML=udid)
-            else:
-                return json.dumps(data)
+            return json.dumps(data)
     return "ERR", 404 #device not found
 
 @dummy.route('/device/<udid>/<value>', methods = ['GET', 'POST'])
