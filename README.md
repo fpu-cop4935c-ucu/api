@@ -8,6 +8,7 @@ Be sure that `python3` and `python3-pip` and any other dependencies are installe
 and be sure that we have the `flask` and `flask-cors` pip modules installed:
 
 `pip3 install flask bluepy digi-xbee`
+
 `pip install -U flask-cors`
 
 
